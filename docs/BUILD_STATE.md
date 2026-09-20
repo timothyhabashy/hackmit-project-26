@@ -141,8 +141,10 @@ T03 also keeps the Section N source IDs: invoice `INV-1042`, remittance `DOC-R20
   the unnarrowed list, so CLI and UI differ on that one view.
 - `src/precedent/services.py` line 18 still says "for Learning Results" in a
   docstring. It was outside Session 19's permitted edit surface.
-- Git is not initialized; application source version is a hash of
-  investigator behavior files.
+- Git is initialized and the project is published at
+  https://github.com/timothyhabashy/hackmit-project-26. Application source
+  version is still a hash of investigator behavior files rather than a commit
+  SHA; that hash is what gates lesson activation.
 - Do not tune product logic from a future held-out run. Preserve this
   BLOCKED record; a later live run is a new experiment ID.
 

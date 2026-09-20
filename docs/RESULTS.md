@@ -130,7 +130,9 @@ experiment manifest, because the experiment did not start.
   multi-currency settlement, or real ERP posting.
 - `case show` lists every invoice in the workspace snapshot, not only the
   case’s matched candidates.
-- Git is not initialized; source version is a behavior-file hash.
+- The project is under git and published at
+  https://github.com/timothyhabashy/hackmit-project-26. Source version is
+  still a behavior-file hash rather than a commit SHA.
 - `artifacts/` is gitignored. Durable claims live in this file and
   `docs/BUILD_STATE.md`.
 
