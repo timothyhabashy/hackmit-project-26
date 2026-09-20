@@ -176,15 +176,16 @@ def _render_memory_summary(settings: svc.Settings, workspace_id: str | None) -> 
         memory_ids = svc.attached_memory_ids(settings, workspace_id)
     except svc.PersistenceError:
         return
-    theme.kpi(
-        "Memory attached",
-        f"{len(memory_ids)} ACTIVE",
-        icon=":material/school:",
-        help=(
-            "ACTIVE lessons attached to this workspace. Ordinary investigation uses them "
-            "only when Memory enabled is on."
-        ),
-    )
+    with st.container(key="pc-sidebar-memory"):
+        theme.kpi(
+            "Memory attached",
+            f"{len(memory_ids)} ACTIVE",
+            icon=":material/school:",
+            help=(
+                "ACTIVE lessons attached to this workspace. Ordinary investigation uses them "
+                "only when Memory enabled is on."
+            ),
+        )
 
 
 def _render_demo_admin(settings: svc.Settings, workspace_id: str | None) -> None:

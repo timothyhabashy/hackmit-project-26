@@ -245,17 +245,27 @@ def _render_evidence(
         format_func=lambda value: _document_option_label(by_id[value], recon),
         key=f"evidence_document_{case_id}",
     )
-    open_col, read_col = st.columns(2)
-    with open_col:
-        open_clicked = st.button(
-            "Open document",
-            key=f"open_evidence_{case_id}",
-            icon=":material/fact_check:",
-            help=(
-                "Record that a controller inspected this document. The stored record "
-                "carries the document's content hash."
-            ),
-        )
+    with st.container(key="pc-evidence-actions"):
+        open_col, read_col, _spacer = st.columns([2.4, 3.2, 4.4])
+        with open_col:
+            open_clicked = st.button(
+                "Open document",
+                key=f"open_evidence_{case_id}",
+                icon=":material/fact_check:",
+                width="content",
+                help=(
+                    "Record that a controller inspected this document. The stored record "
+                    "carries the document's content hash."
+                ),
+            )
+        with read_col:
+            read_clicked = st.button(
+                "Read full document",
+                key=f"read_document_{case_id}",
+                icon=":material/article:",
+                width="content",
+                help="Open the complete stored text and its normalized facts. Records nothing.",
+            )
     if open_clicked:
         _handle_open_evidence(settings, workspace_id, case_id, selected_id)
         return
@@ -264,13 +274,6 @@ def _render_evidence(
     except svc.PersistenceError as exc:
         st.error(str(exc))
         return
-    with read_col:
-        read_clicked = st.button(
-            "Read full document",
-            key=f"read_document_{case_id}",
-            icon=":material/article:",
-            help="Open the complete stored text and its normalized facts. Records nothing.",
-        )
     theme.doc_card(
         document,
         excerpt_lines=_EVIDENCE_EXCERPT_LINES,
@@ -1088,6 +1091,7 @@ def _render_resolution_fields(
     by_id = {item.invoice_id: item for item in recon.candidates}
     built: list[Allocation] = []
     parse_error = None
+    empty_hint = False
     for index in range(row_count):
         cols = st.columns(3)
         with cols[0]:
@@ -1122,7 +1126,7 @@ def _render_resolution_fields(
             parse_error = cash_error or fee_error
             continue
         if cash_cents is None or fee_cents is None:
-            parse_error = "Cash and fee must be entered as decimal text."
+            empty_hint = True
             continue
         try:
             built.append(
@@ -1133,6 +1137,9 @@ def _render_resolution_fields(
     if parse_error:
         st.error(parse_error)
         return None, parse_error
+    if empty_hint or not built:
+        theme.render_inline(theme.quiet("Enter cash and fee as decimal text such as 9965.00."))
+        return None, None
     customer_ids = {by_id[item.invoice_id].customer_id for item in built}
     if len(customer_ids) != 1:
         message = "A corrected resolution must name invoices for one customer."
@@ -1165,9 +1172,7 @@ def _parse_money_field(
     if not text:
         if empty_ok and default_zero:
             return 0, None
-        if empty_ok:
-            return None, None
-        return None, "Enter cash and fee as decimal text such as 9965.00."
+        return None, None
     try:
         return parse_decimal_cents(text), None
     except ValueError as exc:

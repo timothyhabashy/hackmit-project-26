@@ -322,7 +322,6 @@ def _render_transfer(positive: list[str], negative: list[str]) -> None:
         "Positive transfer",
         positive,
         color=theme.GREEN,
-        soft=theme.GREEN_SOFT,
         note="memory correct where baseline was wrong",
         empty="No case where memory fixed a baseline mistake in this experiment.",
     )
@@ -330,7 +329,6 @@ def _render_transfer(positive: list[str], negative: list[str]) -> None:
         "Negative transfer",
         negative,
         color=theme.RED,
-        soft=theme.RED_SOFT,
         note="baseline correct where memory was wrong",
         empty="No case where memory broke a baseline success in this experiment.",
     )
@@ -341,7 +339,6 @@ def _render_transfer_row(
     case_ids: list[str],
     *,
     color: str,
-    soft: str,
     note: str,
     empty: str,
 ) -> None:
@@ -353,8 +350,8 @@ def _render_transfer_row(
         theme.render_inline(label, theme.quiet(empty))
         return
     chips = "".join(
-        f'<span class="pc-tag" style="background:{soft};color:{color};'
-        f'border:1px solid {color}">{theme.escape_text(case_id)}</span>'
+        f'<span class="pc-tag" style="color:{color};border:1px solid {color}">'
+        f"{theme.escape_text(case_id)}</span>"
         for case_id in case_ids
     )
     theme.render_inline(label, theme.quiet(f"{len(case_ids)} case(s)"), chips)
@@ -499,39 +496,31 @@ def _render_recorded_ledger(item: Any) -> None:
     opening = item.input_snapshot
     closing = item.final_financial_snapshot
     theme.render_inline(
-        theme.quiet("Opening"),
-        theme.ident(opening.summary.case_id, width_ch=20),
-        theme.quiet(opening.summary.case_state.value),
-        theme.money_html(opening.payment.amount_cents, tone="strong"),
-        theme.quiet(opening.payment.currency),
         theme.quiet(
+            f"Opening {opening.summary.case_state.value} · "
+            f"{theme.money(opening.payment.amount_cents)} {opening.payment.currency} · "
             f"applied={str(opening.payment.applied).lower()} · revision {opening.ledger_revision}"
         ),
-    )
-    theme.render_inline(
-        theme.quiet("Final"),
-        theme.ident(closing.summary.case_id, width_ch=20),
-        theme.quiet(closing.summary.case_state.value),
         theme.quiet(
+            f"Closing {closing.summary.case_state.value} · "
             f"applied={str(closing.payment.applied).lower()} · revision {closing.ledger_revision}"
         ),
     )
+    rows: list[tuple[str, int | None, int]] = []
     for invoice in closing.invoices:
         opened = next(
             (row for row in opening.invoices if row.invoice_id == invoice.invoice_id),
             None,
         )
-        before = (
-            theme.quiet("n/a") if opened is None else theme.money_html(opened.outstanding_cents)
+        rows.append(
+            (
+                invoice.invoice_id,
+                None if opened is None else opened.outstanding_cents,
+                invoice.outstanding_cents,
+            )
         )
-        theme.render_inline(
-            theme.quiet("Invoice"),
-            theme.ident(invoice.invoice_id, width_ch=18),
-            theme.quiet("outstanding"),
-            before,
-            theme.quiet("to"),
-            theme.money_html(invoice.outstanding_cents, tone="strong"),
-        )
+    if rows:
+        theme.ledger_table(rows)
 
 
 def _recorded_run_option_label(item: object) -> str:

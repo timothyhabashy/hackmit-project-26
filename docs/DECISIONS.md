@@ -125,3 +125,28 @@ the spec are not listed.
   remembered case is never dropped because a state filter hides it. Tests
   drive selection by writing `st.session_state["case_table"]`, which is the
   same input the browser sends.
+
+## D008 - Ink/paper tokens and Streamlit viewer chrome
+
+- Date: 2026-09-20
+- Status: accepted
+- Affects: D005 presentation layer, Session 20
+- Decision: retarget the Session 19 design layer from Tailwind slate / blue-800 /
+  amber-100 to warm paper, charcoal ink, one navy for actions, and amber only
+  for unexplained money / needs a human. Native Streamlit chrome follows:
+  `[client] toolbarMode = "viewer"`, `disableDataExport = true`, 2px radius,
+  and yellow/blue/green/red theme maps onto paper fills so alerts do not
+  introduce a second pastel palette. OPEN / RUNNING / RESOLVED / ERROR are
+  outlined on paper; `NEEDS_REVIEW` is the only solid fill. IBM Plex Sans
+  ships discrete latin 400/500/600 files; the previous Sans file was a
+  variable cut registered as `weight = "100 700"`.
+- Reason: slate and blue-800 read as a generic dashboard on a product whose
+  claim is a paper ledger. Amber-100 (`#FEF3C7`) slabs made unexplained money
+  look like a warning toast. `#5B6A80` still read cool-slate on warm paper, so
+  faint moved to `#6B6358`. Invoice-tool navy `#1E3A5F` replaces Tailwind
+  blue-800 (`#1E3A8A`) as the single action color. Headings requested weight
+  600, so a variable file claimed as 400 would faux-bold.
+- Consequence: Python constants in `ui_theme.py` and `.streamlit/config.toml`
+  stay byte-aligned on the same hex values. Hairline borders (`#D4CBBA`) remain
+  decorative and do not meet 3:1; text, focus rings, and badge outlines do.
+  No spec requirement changed. D005-D007 stand.

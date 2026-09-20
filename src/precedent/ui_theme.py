@@ -22,7 +22,8 @@ sentence return an HTML ``str`` (``money_html``, ``ident``, ``state_badge``,
 ``render_inline``. Primitives that own vertical space render themselves and
 return ``None`` (``section``, ``kpi``, ``gap_strip``, ``doc_card``,
 ``equation_block``, ``chain_block``, ``verdict_block``, ``lifecycle_stepper``,
-``budget_strip``, ``count_strip``, ``readiness_panel``, ``trace_timeline``).
+``budget_strip``, ``count_strip``, ``ledger_table``, ``readiness_panel``,
+``trace_timeline``).
 
 **Blocks go through st.markdown, not st.html.** ``st.html`` output is invisible
 to ``streamlit.testing.v1.AppTest``, which the offline suite depends on. Only
@@ -52,40 +53,34 @@ import streamlit as st
 from precedent import ui_services as svc
 from precedent.models import CaseState, DocumentKind, ExecutionMode, LessonState, RunEventKind
 
-INK = "#0F172A"
-MUTED = "#475569"
-# Slate 500 (#64748B) reaches only 4.34:1 on the #F1F5F9 recessed surface this
-# tier lands on inside gap cells, document headers, and the context strip. This
-# value clears 5.0:1 there and 5.5:1 on white while staying visibly lighter
-# than MUTED, so the tier separation survives the fix.
-FAINT = "#5B6A80"
-BORDER = "#E2E8F0"
-BORDER_STRONG = "#CBD5E1"
-SURFACE = "#FFFFFF"
-CANVAS = "#F8FAFC"
-SUBTLE = "#F1F5F9"
-NAVY = "#1E3A8A"
-NAVY_SOFT = "#DBEAFE"
-AMBER = "#A16207"
-AMBER_SOFT = "#FEF3C7"
-AMBER_TEXT = "#92400E"
+INK = "#1A1612"
+MUTED = "#5A544C"
+# Recessed paper (#E8E1D4) is darker than the old slate recess, so faint has
+# to sit closer to muted than a cool-slate leftover would. #6B6358 is the
+# lightest warm gray that still clears 4.5:1 there (4.55:1) and 5.73:1 on
+# surface. #5B6A80 is not used: it reads as Tailwind slate on warm paper.
+FAINT = "#6B6358"
+BORDER = "#D4CBBA"
+BORDER_STRONG = "#B7AD9A"
+SURFACE = "#FFFBF4"
+CANVAS = "#F3EEE4"
+SUBTLE = "#E8E1D4"
+NAVY = "#1E3A5F"
+AMBER = "#8A5808"
+AMBER_TEXT = "#8A5808"
 GREEN = "#166534"
-GREEN_SOFT = "#DCFCE7"
 RED = "#991B1B"
-RED_SOFT = "#FEE2E2"
-INDIGO = "#3730A3"
-INDIGO_SOFT = "#E0E7FF"
 MONO_STACK = '"IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace'
 
-# Case state: filled badges. NEEDS_REVIEW is the only solid fill in the set, so
-# "the system wants a human" is the most salient thing on any screen. Amber is
-# reserved for exactly that meaning and appears nowhere else.
+# Case state: outlined on paper. NEEDS_REVIEW is the only solid fill in the
+# set, so "the system wants a human" is the most salient thing on any screen.
+# Amber is reserved for unexplained money / that human-attention meaning.
 _STATE_STYLE: dict[CaseState, tuple[str, str, str, str]] = {
-    CaseState.OPEN: ("\u25cb", NAVY_SOFT, NAVY, "#BFDBFE"),
-    CaseState.RUNNING: ("\u25d0", INDIGO_SOFT, INDIGO, "#C7D2FE"),
-    CaseState.RESOLVED: ("\u2713", GREEN_SOFT, GREEN, "#BBF7D0"),
+    CaseState.OPEN: ("\u25cb", SURFACE, NAVY, NAVY),
+    CaseState.RUNNING: ("\u25d0", SURFACE, MUTED, BORDER_STRONG),
+    CaseState.RESOLVED: ("\u2713", SURFACE, GREEN, GREEN),
     CaseState.NEEDS_REVIEW: ("\u25b2", AMBER, "#FFFFFF", AMBER),
-    CaseState.ERROR: ("\u2715", RED_SOFT, RED, "#FECACA"),
+    CaseState.ERROR: ("\u2715", SURFACE, RED, RED),
 }
 
 # Run provenance: outlined uppercase mono chips, never filled. A dashed outline
@@ -93,7 +88,7 @@ _STATE_STYLE: dict[CaseState, tuple[str, str, str, str]] = {
 _PROVENANCE_STYLE: dict[str, tuple[str, bool]] = {
     "LIVE": (GREEN, False),
     "HUMAN": (NAVY, False),
-    "RECORDED RUN": (INDIGO, True),
+    "RECORDED RUN": (NAVY, True),
     "TEST SIMULATION": (MUTED, True),
     "LIVE UNAVAILABLE": (FAINT, True),
     "UNKNOWN": (FAINT, True),
@@ -201,9 +196,7 @@ def _stylesheet() -> str:
   --pc-surface: {SURFACE};
   --pc-subtle: {SUBTLE};
   --pc-navy: {NAVY};
-  --pc-navy-soft: {NAVY_SOFT};
   --pc-amber: {AMBER};
-  --pc-amber-soft: {AMBER_SOFT};
   --pc-amber-text: {AMBER_TEXT};
   --pc-green: {GREEN};
   --pc-red: {RED};
@@ -220,6 +213,16 @@ def _stylesheet() -> str:
    live call cannot be made. Streamlit's default disabled styling fades the
    label below readable contrast, so it is restored to the muted tier and
    given a border. Shape and cursor, not color alone, mark it unavailable. */
+[class*="st-key-pc-evidence-actions"] [data-testid="stButton"] {{
+  width: auto;
+}}
+[class*="st-key-pc-evidence-actions"] [data-testid="stButton"] button {{
+  width: auto !important;
+  min-width: max-content;
+  overflow: visible;
+  text-overflow: clip;
+}}
+
 [data-testid="stButton"] button:disabled,
 [data-testid="stButton"] button[disabled],
 [data-testid="stFormSubmitButton"] button:disabled {{
@@ -247,15 +250,26 @@ def _stylesheet() -> str:
 [class*="st-key-pc-panel"] {{
   background: var(--pc-surface);
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
-  padding: 0.875rem 1rem;
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
 }}
 [class*="st-key-pc-quiet"] {{
   background: var(--pc-subtle);
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
-  padding: 0.75rem 0.875rem;
+  border-radius: 2px;
+  padding: 0.75rem 1rem;
 }}
+[class*="st-key-pc-panel"] [data-testid="stVerticalBlock"],
+[class*="st-key-pc-quiet"] [data-testid="stVerticalBlock"] {{
+  gap: 0.35rem;
+}}
+[class*="st-key-pc-panel"] [data-testid="stMarkdownContainer"],
+[class*="st-key-pc-quiet"] [data-testid="stMarkdownContainer"],
+[class*="st-key-pc-panel"] .stMarkdown,
+[class*="st-key-pc-quiet"] .stMarkdown {{
+  margin: 0;
+}}
+.pc-section:first-child {{ margin-top: 0; }}
 
 /* A row of metric cards in st.container(key="pc-kpis-NAME") wraps instead of
    compressing. st.columns holds its ratio at any width, which at 1024px
@@ -268,6 +282,60 @@ def _stylesheet() -> str:
 [class*="st-key-pc-kpis"] [data-testid="stColumn"] {{
   flex: 1 1 10.5rem;
   min-width: 10.5rem;
+}}
+[class*="st-key-pc-kpis"] [data-testid="stMetricValue"] {{
+  font-size: 1.625rem;
+}}
+
+/* Sidebar memory reading is not a page hero. */
+[data-testid="stSidebar"] [data-testid="stMetric"] {{
+  background: var(--pc-surface);
+  border: 1px solid var(--pc-border);
+  border-radius: 2px;
+  padding: 0.4rem 0.65rem !important;
+}}
+[data-testid="stSidebar"] [data-testid="stMetricValue"] {{
+  font-size: 1.125rem !important;
+  line-height: 1.2 !important;
+}}
+[data-testid="stSidebar"] [data-testid="stMetricLabel"] {{
+  font-size: 0.75rem !important;
+}}
+[data-testid="stSidebar"] [data-testid="stMetric"] svg {{
+  width: 1rem !important;
+  height: 1rem !important;
+}}
+
+/* Native alerts: paper plus a 3px left rule. Kind color is the rule, not a
+   pastel slab. Inner containers inherit the paper fill. */
+[data-testid="stAlert"] {{
+  background: var(--pc-surface) !important;
+  border: 1px solid var(--pc-border) !important;
+  border-radius: 2px !important;
+  color: var(--pc-ink) !important;
+  box-shadow: inset 3px 0 0 var(--pc-navy);
+}}
+[data-testid="stAlert"] [data-testid="stAlertContainer"],
+[data-testid="stAlert"] > div {{
+  background: transparent !important;
+}}
+[data-testid="stAlert"]:has([data-testid="stAlertContentWarning"]) {{
+  box-shadow: inset 3px 0 0 var(--pc-amber);
+}}
+[data-testid="stAlert"]:has([data-testid="stAlertContentSuccess"]) {{
+  box-shadow: inset 3px 0 0 var(--pc-green);
+}}
+[data-testid="stAlert"]:has([data-testid="stAlertContentError"]) {{
+  box-shadow: inset 3px 0 0 var(--pc-red);
+}}
+[data-testid="stAlert"]:has([data-testid="stAlertContentInfo"]) {{
+  box-shadow: inset 3px 0 0 var(--pc-navy);
+}}
+
+/* Hide leftover dataframe element toolbar (search / fullscreen) after
+   disableDataExport. Row selection stays. */
+[data-testid="stDataFrame"] [data-testid="stElementToolbar"] {{
+  display: none !important;
 }}
 
 /* Money. Tabular figures so columns of amounts line up. */
@@ -283,21 +351,25 @@ def _stylesheet() -> str:
 .pc-money-strong {{ font-weight: 600; color: var(--pc-ink); }}
 
 /* Identifier chip. Truncation is visual only: the full value stays in the DOM
-   so it can be copied, read by a screen reader, and asserted on in tests. */
+   so it can be copied, read by a screen reader, and asserted on in tests.
+   Default 20ch shows CASE-1CFA9FEE848F; hashes still pass a shorter width. */
 .pc-ident {{
-  display: inline-block;
-  max-width: 14ch;
+  display: inline-flex;
+  align-items: center;
+  max-width: 20ch;
+  min-height: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  vertical-align: bottom;
   font-family: var(--pc-mono);
   font-size: 0.8125rem;
+  line-height: 1;
   color: var(--pc-muted);
   background: var(--pc-subtle);
   border: 1px solid var(--pc-border);
-  border-radius: 3px;
+  border-radius: 2px;
   padding: 0 0.3rem;
+  box-sizing: border-box;
   cursor: help;
 }}
 .pc-ident-label {{
@@ -312,11 +384,13 @@ def _stylesheet() -> str:
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+  min-height: 1.5rem;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  border-radius: 3px;
-  padding: 0.1rem 0.45rem;
+  border-radius: 2px;
+  padding: 0 0.45rem;
+  box-sizing: border-box;
   white-space: nowrap;
 }}
 .pc-state-icon {{ font-size: 0.7rem; line-height: 1; }}
@@ -325,14 +399,16 @@ def _stylesheet() -> str:
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+  min-height: 1.5rem;
   font-family: var(--pc-mono);
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   background: transparent;
-  border-radius: 3px;
-  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  padding: 0 0.4rem;
+  box-sizing: border-box;
   white-space: nowrap;
 }}
 .pc-prov-dot {{ font-size: 0.55rem; line-height: 1; }}
@@ -341,7 +417,7 @@ def _stylesheet() -> str:
    Tier 2 is the primary value and is carried by .pc-money and st.metric. */
 .pc-section {{ margin: 1.1rem 0 0.55rem; }}
 .pc-section-title {{
-  font-size: 1.0625rem;
+  font-size: 1.375rem;
   font-weight: 600;
   color: var(--pc-ink);
   line-height: 1.3;
@@ -374,7 +450,12 @@ def _stylesheet() -> str:
   max-width: 82ch;
 }}
 .pc-list-fine {{ font-size: 0.8125rem; color: var(--pc-muted); line-height: 1.6; }}
-.pc-inline {{ display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; }}
+.pc-inline {{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}}
 .pc-quiet {{ font-size: 0.8125rem; color: var(--pc-muted); }}
 
 /* Recessed note. Used for activation blockers and anything else that states a
@@ -382,7 +463,7 @@ def _stylesheet() -> str:
 .pc-note {{
   border: 1px solid var(--pc-border);
   border-left: 3px solid var(--pc-muted);
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--pc-subtle);
   padding: 0.55rem 0.8rem;
   margin-top: 0.4rem;
@@ -397,23 +478,22 @@ def _stylesheet() -> str:
 .pc-note-foot {{ font-size: 0.75rem; color: var(--pc-muted); margin-top: 0.35rem; }}
 
 /* Reconciliation strip. The unexplained difference is the product thesis, so
-   it is the largest type on the row and the only amber element. */
+   it is the largest type on the row and the only amber element. Equal columns;
+   the 3px amber rule sits inside the hero cell. */
 .pc-gap {{
-  display: flex;
-  align-items: stretch;
-  flex-wrap: wrap;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   background: var(--pc-surface);
 }}
 .pc-gap-cell {{
-  flex: 1 1 8rem;
+  min-width: 0;
   padding: 0.6rem 0.9rem;
   border-right: 1px solid var(--pc-border);
 }}
-.pc-gap-cell:last-child {{ border-right: none; }}
+.pc-gap-cell:nth-child(3n) {{ border-right: none; }}
 .pc-gap-label {{
   font-size: 0.6875rem;
   text-transform: uppercase;
@@ -423,17 +503,15 @@ def _stylesheet() -> str:
 }}
 .pc-gap-value {{ font-size: 1.0625rem; }}
 .pc-gap-hero {{
-  background: var(--pc-amber-soft);
-  border-left: 3px solid var(--pc-amber);
-  border-right: 1px solid var(--pc-amber);
-  flex: 1.25 1 10rem;
+  background: var(--pc-surface);
+  box-shadow: inset 3px 0 0 var(--pc-amber);
 }}
 .pc-gap-hero .pc-gap-label {{ color: var(--pc-amber-text); font-weight: 600; }}
 .pc-gap-hero .pc-gap-value {{ font-size: 1.375rem; color: var(--pc-amber-text); }}
 .pc-gap-settled {{ background: var(--pc-subtle); }}
 .pc-gap-settled .pc-gap-value {{ color: var(--pc-green); }}
 .pc-gap-note {{
-  flex: 1 1 100%;
+  grid-column: 1 / -1;
   border-top: 1px solid var(--pc-border);
   border-right: none;
   padding: 0.4rem 0.9rem;
@@ -448,7 +526,7 @@ def _stylesheet() -> str:
   display: flex;
   flex-wrap: wrap;
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   background: var(--pc-surface);
   margin-top: 0.4rem;
@@ -482,7 +560,7 @@ def _stylesheet() -> str:
   display: flex;
   flex-wrap: wrap;
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
+  border-radius: 2px;
   overflow: hidden;
   background: var(--pc-surface);
 }}
@@ -499,10 +577,18 @@ def _stylesheet() -> str:
   font-weight: 600;
   color: var(--pc-faint);
 }}
-.pc-step-note {{ font-size: 0.8125rem; color: var(--pc-muted); margin-top: 0.15rem; }}
+.pc-step-note {{
+  font-size: 0.8125rem;
+  color: var(--pc-muted);
+  margin-top: 0.15rem;
+  min-height: 3.9em;
+}}
 .pc-step-todo {{ background: var(--pc-subtle); }}
 .pc-step-done .pc-step-name {{ color: var(--pc-green); }}
-.pc-step-now {{ background: var(--pc-navy-soft); }}
+.pc-step-now {{
+  background: var(--pc-surface);
+  box-shadow: inset 3px 0 0 var(--pc-navy);
+}}
 .pc-step-now .pc-step-name {{ color: var(--pc-navy); }}
 .pc-step-exit {{
   flex: 1 1 100%;
@@ -513,10 +599,11 @@ def _stylesheet() -> str:
   color: var(--pc-ink);
 }}
 
-/* Money arithmetic as the hero of a block. */
+/* Money arithmetic as the hero of a block. The math does not stretch to fill
+   the row; operators sit on the money baseline. */
 .pc-eq {{
   border: 1px solid var(--pc-border);
-  border-radius: 6px;
+  border-radius: 2px;
   background: var(--pc-surface);
   overflow: hidden;
   margin: 0.35rem 0 0.6rem;
@@ -531,14 +618,19 @@ def _stylesheet() -> str:
   letter-spacing: 0.08em;
   color: var(--pc-faint);
 }}
-.pc-eq-row {{ display: flex; align-items: stretch; flex-wrap: wrap; }}
-.pc-eq-term {{ flex: 1 1 8rem; padding: 0.7rem 0.9rem; }}
+.pc-eq-row {{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  justify-content: start;
+  align-items: baseline;
+  column-gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+}}
+.pc-eq-term {{ min-width: 0; }}
 .pc-eq-op {{
-  display: flex;
-  align-items: center;
-  padding: 0 0.4rem;
   font-family: var(--pc-mono);
   font-size: 1.25rem;
+  line-height: 1.25;
   color: var(--pc-faint);
 }}
 .pc-eq-value {{ font-size: 1.375rem; line-height: 1.25; }}
@@ -557,9 +649,9 @@ def _stylesheet() -> str:
   font-size: 0.8125rem;
   color: var(--pc-muted);
 }}
-.pc-eq-open {{ border-color: var(--pc-amber); }}
-.pc-eq-open .pc-eq-head {{ background: var(--pc-amber-soft); color: var(--pc-amber-text); }}
-.pc-eq-open .pc-eq-foot {{ background: var(--pc-amber-soft); color: var(--pc-amber-text); }}
+.pc-eq-open {{ box-shadow: inset 3px 0 0 var(--pc-amber); }}
+.pc-eq-open .pc-eq-head {{ background: var(--pc-surface); color: var(--pc-amber-text); }}
+.pc-eq-open .pc-eq-foot {{ background: var(--pc-surface); color: var(--pc-amber-text); }}
 
 /* Ordered evidence steps. A missing link is amber, because that is exactly
    the moment the system should ask a human instead of inferring. */
@@ -572,7 +664,7 @@ def _stylesheet() -> str:
   padding: 0.5rem 0.75rem;
   border: 1px solid var(--pc-border);
   border-left: 3px solid var(--pc-navy);
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--pc-surface);
 }}
 .pc-chain-num {{
@@ -584,7 +676,10 @@ def _stylesheet() -> str:
 }}
 .pc-chain-title {{ font-size: 0.875rem; font-weight: 600; color: var(--pc-ink); }}
 .pc-chain-body {{ font-size: 0.8125rem; color: var(--pc-muted); margin-top: 0.1rem; }}
-.pc-chain-miss {{ border-left-color: var(--pc-amber); background: var(--pc-amber-soft); }}
+.pc-chain-miss {{
+  border-left-color: var(--pc-amber);
+  background: var(--pc-surface);
+}}
 .pc-chain-miss .pc-chain-num {{ color: var(--pc-amber-text); }}
 .pc-chain-miss .pc-chain-title {{ color: var(--pc-amber-text); }}
 .pc-chain-miss .pc-chain-body {{ color: var(--pc-amber-text); }}
@@ -593,7 +688,7 @@ def _stylesheet() -> str:
 .pc-verdict {{
   border: 1px solid var(--pc-border);
   border-left: 3px solid var(--pc-green);
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--pc-surface);
   padding: 0.55rem 0.85rem;
   margin: 0.35rem 0 0.6rem;
@@ -622,14 +717,14 @@ def _stylesheet() -> str:
 /* Evidence rendered to look like a document rather than a console dump. */
 .pc-doc {{
   border: 1px solid var(--pc-border-strong);
-  border-radius: 4px;
+  border-radius: 2px;
   background: var(--pc-surface);
   box-shadow: 0 1px 0 var(--pc-border);
   overflow: hidden;
 }}
 .pc-doc-head {{
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 0.6rem 0.9rem;
@@ -676,7 +771,7 @@ def _stylesheet() -> str:
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
   border-left: 3px solid transparent;
-  border-radius: 3px;
+  border-radius: 2px;
 }}
 .pc-tl-seq {{
   font-family: var(--pc-mono);
@@ -699,7 +794,7 @@ def _stylesheet() -> str:
 }}
 .pc-tl-key .pc-tl-kind {{ font-weight: 600; color: var(--pc-navy); }}
 .pc-tl-attention {{
-  background: var(--pc-amber-soft);
+  background: var(--pc-surface);
   border-left-color: var(--pc-amber);
 }}
 .pc-tl-attention .pc-tl-kind {{ font-weight: 600; color: var(--pc-amber-text); }}
@@ -723,20 +818,52 @@ def _stylesheet() -> str:
 .pc-ready-bad .pc-ready-mark {{ color: var(--pc-amber); }}
 
 /* Case-id tag used for transfer lists. Color is paired with a written label
-   in the row beside it, never used on its own to carry meaning. */
+   in the row beside it, never used on its own to carry meaning. Outlined on
+   paper rather than a pastel fill. */
 .pc-tag {{
   display: inline-block;
   font-family: var(--pc-mono);
   font-size: 0.8125rem;
-  border-radius: 3px;
+  border-radius: 2px;
   padding: 0 0.35rem;
   margin-right: 0.3rem;
+  background: var(--pc-surface);
 }}
 .pc-tag-label {{
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 600;
+}}
+
+/* Recorded-run ledger. Invoice amounts as a table, not a chip row. */
+.pc-ledger {{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.45rem;
+  font-size: 0.9375rem;
+}}
+.pc-ledger th,
+.pc-ledger td {{
+  text-align: left;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 1px solid var(--pc-border);
+  vertical-align: baseline;
+}}
+.pc-ledger th {{
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--pc-faint);
+  background: var(--pc-subtle);
+}}
+.pc-ledger td:nth-child(2),
+.pc-ledger td:nth-child(3),
+.pc-ledger th:nth-child(2),
+.pc-ledger th:nth-child(3) {{
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }}
 </style>
 """.strip()
@@ -791,15 +918,17 @@ def money_html(cents: int, *, tone: str = "default", signed: bool = False) -> st
     return f'<span class="{" ".join(classes)}">{escape_text(body_text)}</span>'
 
 
-def ident(value: str, *, label: str | None = None, width_ch: int = 14) -> str:
+def ident(value: str, *, label: str | None = None, width_ch: int = 20) -> str:
     """Return a truncating monospace chip for a long identifier.
 
     Truncation is CSS only, so the full value is still selectable and carried
     in the ``title`` tooltip. ``label`` prefixes a small uppercase caption.
+    Default width is 20ch so ``CASE-1CFA9FEE848F`` is not clipped; pass a
+    shorter ``width_ch`` only for hashes.
     """
     raw = "" if value is None else str(value)
     prefix = f'<span class="pc-ident-label">{escape_text(label)}</span>' if label else ""
-    style = f' style="max-width:{int(width_ch)}ch"' if width_ch != 14 else ""
+    style = f' style="max-width:{int(width_ch)}ch"' if width_ch != 20 else ""
     return (
         f'{prefix}<span class="pc-ident" title="{escape_text(raw)}"{style}>'
         f"{escape_text(raw)}</span>"
@@ -820,7 +949,10 @@ def quiet(text: str) -> str:
 
 
 def state_badge(state: CaseState) -> str:
-    """Return a filled, icon-bearing badge fragment for a case state."""
+    """Return an outlined, icon-bearing badge fragment for a case state.
+
+    ``NEEDS_REVIEW`` is the only solid fill (amber on white type).
+    """
     icon, background, color, border = _STATE_STYLE.get(state, ("\u25cb", SUBTLE, MUTED, BORDER))
     label = getattr(state, "value", str(state))
     return (
@@ -1125,6 +1257,33 @@ def count_strip(cells: Sequence[tuple[str, Any]]) -> None:
         for label, value in cells
     )
     st.markdown(f'<div class="pc-strip">{body_html}</div>', unsafe_allow_html=True)
+
+
+def ledger_table(rows: Sequence[tuple[str, int | None, int]]) -> None:
+    """Render invoice opening and closing outstanding as a bordered table.
+
+    Each row is ``(invoice_id, opening_cents, closing_cents)``. ``opening_cents``
+    is ``None`` when the invoice was not in the opening snapshot.
+    """
+    body_rows = []
+    for invoice_id, opening_cents, closing_cents in rows:
+        if opening_cents is None:
+            opened = f'<span class="pc-quiet">{escape_text("n/a")}</span>'
+        else:
+            opened = money_html(opening_cents)
+        body_rows.append(
+            "<tr>"
+            f"<td>{ident(invoice_id)}</td>"
+            f"<td>{opened}</td>"
+            f"<td>{money_html(closing_cents, tone='strong')}</td>"
+            "</tr>"
+        )
+    st.markdown(
+        '<table class="pc-ledger"><thead><tr>'
+        "<th>Invoice</th><th>Opening outstanding</th><th>Closing outstanding</th>"
+        f"</tr></thead><tbody>{''.join(body_rows)}</tbody></table>",
+        unsafe_allow_html=True,
+    )
 
 
 def lifecycle_stepper(status: LessonState | None) -> None:

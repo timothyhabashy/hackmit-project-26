@@ -1,13 +1,13 @@
 # Build state
-Current session: 19
+Current session: 20
 Status: COMPLETE
-Last verified checkpoint: Session 19 presentation-layer overhaul (2026-09-20 02:25:00 UTC)
-Next session: none (spec sessions 01-18 are finished; 19 is a presentation-layer pass)
+Last verified checkpoint: Session 20 ink/paper UI pass (2026-09-20 04:12:00 UTC)
+Next session: none (spec sessions 01-18 are finished; 19-20 are presentation-layer passes)
 
-Session 19 changed the Streamlit layer only. No validator, ledger, agent,
-service, or evaluation source file was touched, so the behavior fingerprint
-that gates lesson activation is unchanged and Session 18's blocked held-out
-record still stands exactly as recorded below.
+Session 20 changed the Streamlit presentation layer only. No validator,
+ledger, agent, service, or evaluation source file was touched, so the
+behavior fingerprint that gates lesson activation is unchanged and Session
+18's blocked held-out record still stands exactly as recorded below.
 
 ## Environment
 Python version: CPython 3.11.14 (`/Users/timothy/.local/bin/python3.11`, venv `.venv`)
@@ -42,6 +42,7 @@ Result: FAIL exit 2, `LIVE_DISABLED`. `precedent preflight --live` also FAIL
 - [x] 17 End-to-end integration and failure handling
 - [x] 18 Frozen held-out comparison, demo package, and final handoff
 - [x] 19 Presentation-layer overhaul (not a spec session; see DECISIONS D005)
+- [x] 20 Ink/paper UI pass (not a spec session; see DECISIONS D008)
 
 Session 18 is complete as an honest BLOCKED held-out attempt plus demo
 package. It is not a live evaluation success. The product is not ready
@@ -61,6 +62,11 @@ as a complete live correction to tested lesson to future-run system.
 ## Verified commands
 | Command | Result | Date/time | Notes |
 |---|---|---|---|
+| `.venv/bin/python -m pytest -q` | PASS 252 tests in 8.10s | 2026-09-20 04:12 UTC | Session 20 ink/paper pass; same 252 baseline |
+| `.venv/bin/python -m ruff check .` | PASS | 2026-09-20 04:12 UTC | Session 20 |
+| `.venv/bin/python -m ruff format --check .` | PASS 69 files | 2026-09-20 04:12 UTC | Session 20 |
+| Browser Work Queue / Case Detail / Lessons / Results at 1440px and 1024px | PASS. Ink/paper tokens; no Deploy; no `#FEF3C7` slabs; T03 and T06 read $9,965.00 / $10,000.00 / $35.00; T06 gap is paper plus amber rule; recorded-run invoices are a table; equation operators on the money baseline; section titles 20.625px; sidebar `0 ACTIVE` 16.875px | 2026-09-20 04:12 UTC | Throwaway port 8512; user's 8501 left running |
+| Contrast audit, computed foreground against computed background | PASS. Tightest body text: faint `#6B6358` on recessed `#E8E1D4` at 4.55:1. Amber on surface 5.85:1. Navy on surface 11.15:1. Lessons alert 17.44:1. Zero text failures | 2026-09-20 04:12 UTC | Decorative hairlines remain below 3:1, same class as Session 19 |
 | `.venv/bin/python -m pytest -q` | PASS 252 tests in 8.06s | 2026-09-20 02:33 UTC | Recorded-run label hyphen fix in `cli.py` + `tests/test_services.py` |
 | `.venv/bin/python -m ruff check .` | PASS | 2026-09-20 02:33 UTC | Same fix |
 | `.venv/bin/python -m ruff format --check .` | PASS 109 files | 2026-09-20 02:33 UTC | Same fix |
@@ -82,15 +88,20 @@ as a complete live correction to tested lesson to future-run system.
 | Browser Work Queue / T03 Case Detail / Learning Results `http://127.0.0.1:8501` | PASS. LIVE unavailable; Open 9 / Resolved 1; T03 fee equation and disabled Propose; RECORDED RUN `INV-1042` 10,000.00 to 0.00; no saved evaluations; T06 OPEN in queue | 2026-09-20 00:08 UTC | Session 18 nav (three pages), superseded |
 
 ## Decisions and deviations
-- See `docs/DECISIONS.md` (D001-D007).
+- See `docs/DECISIONS.md` (D001-D008).
 - D005 reverses the L4 custom-CSS and chart cuts. D006 records that the
   correction form is partly, not wholly, an `st.form`. D007 records why the
   queue keeps `case_select` and `open_case` beside dataframe row selection.
+- D008 records the Session 20 ink/paper palette and Streamlit viewer chrome,
+  and why slate / blue-800 / amber-100 were abandoned.
 - Session 18 did not change `_BEHAVIOR_FILES` or product logic. No G4a
   redraft. Held-out outcomes were not used for tuning (none existed).
 - Session 19 did not change `_BEHAVIOR_FILES` or product logic either. It
   touched only `app.py`, `app_pages/`, `.streamlit/config.toml`, `static/`,
   `src/precedent/ui*.py`, `tests/test_app.py`, and documentation.
+- Session 20 likewise left `_BEHAVIOR_FILES` untouched. It edited
+  `.streamlit/config.toml`, `src/precedent/ui_theme.py`, `ui.py`,
+  `ui_case.py`, `ui_results.py`, `static/fonts/`, and documentation.
 - A later one-character follow-up changed the recorded-run label in
   `src/precedent/cli.py` line 926 and its `tests/test_services.py` line 531
   assertion from an em-dash to a hyphen, so the CLI matches

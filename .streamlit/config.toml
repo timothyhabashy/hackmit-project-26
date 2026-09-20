@@ -2,25 +2,32 @@
 # Serves ./static at /app/static so IBM Plex is not a venue-wifi dependency.
 enableStaticServing = true
 
+[client]
+# Viewer chrome: hide Deploy / rerun / cache on localhost. Dataframe CSV
+# download is off; row selection stays (D007).
+toolbarMode = "viewer"
+disableDataExport = true
+
 [theme]
 base = "light"
 
-# Trust navy is the only primary. Amber is the only accent and is reserved for
-# human-attention states. See src/precedent/ui_theme.py for the Python mirror.
-primaryColor = "#1E3A8A"
-backgroundColor = "#F8FAFC"
-secondaryBackgroundColor = "#F1F5F9"
-textColor = "#0F172A"
-linkColor = "#1E3A8A"
+# Ink/paper tokens. Python constants in src/precedent/ui_theme.py must stay
+# byte-aligned on these hex values. Amber is the only accent and is reserved
+# for unexplained money / needs a human.
+primaryColor = "#1E3A5F"
+backgroundColor = "#F3EEE4"
+secondaryBackgroundColor = "#E8E1D4"
+textColor = "#1A1612"
+linkColor = "#1E3A5F"
 linkUnderline = true
-borderColor = "#E2E8F0"
+borderColor = "#D4CBBA"
 showWidgetBorder = true
 showSidebarBorder = true
 
-dataframeBorderColor = "#E2E8F0"
-dataframeHeaderBackgroundColor = "#F1F5F9"
-codeBackgroundColor = "#F1F5F9"
-codeTextColor = "#334155"
+dataframeBorderColor = "#D4CBBA"
+dataframeHeaderBackgroundColor = "#E8E1D4"
+codeBackgroundColor = "#E8E1D4"
+codeTextColor = "#5A544C"
 
 font = "IBM Plex Sans, sans-serif"
 headingFont = "IBM Plex Sans, sans-serif"
@@ -28,46 +35,63 @@ codeFont = "IBM Plex Mono, monospace"
 baseFontSize = 15
 baseFontWeight = 400
 codeFontSize = "0.8125rem"
-headingFontSizes = ["1.75rem", "1.25rem", "1.0625rem"]
+headingFontSizes = ["1.375rem", "1.375rem", "1.0625rem"]
 headingFontWeights = [600, 600, 600]
 metricValueFontSize = "1.625rem"
 metricValueFontWeight = 600
+baseRadius = "0.125rem"
+buttonRadius = "0.125rem"
 
-# Amber accent. Streamlit's yellow and orange families are collapsed onto the
-# single accent so the app cannot show two competing warm colors.
-yellowColor = "#A16207"
-yellowBackgroundColor = "#FEF3C7"
-yellowTextColor = "#92400E"
-orangeColor = "#A16207"
-orangeBackgroundColor = "#FEF3C7"
-orangeTextColor = "#92400E"
+# Native alerts use paper fills so they do not introduce a second pastel
+# palette. Kind is carried by the left rule in ui_theme.py.
+yellowColor = "#8A5808"
+yellowBackgroundColor = "#FFFBF4"
+yellowTextColor = "#8A5808"
+orangeColor = "#8A5808"
+orangeBackgroundColor = "#FFFBF4"
+orangeTextColor = "#8A5808"
 
-blueColor = "#1E3A8A"
-blueBackgroundColor = "#DBEAFE"
-blueTextColor = "#1E40AF"
+blueColor = "#1E3A5F"
+blueBackgroundColor = "#FFFBF4"
+blueTextColor = "#1E3A5F"
 greenColor = "#166534"
-greenBackgroundColor = "#DCFCE7"
+greenBackgroundColor = "#FFFBF4"
 greenTextColor = "#166534"
 redColor = "#991B1B"
-redBackgroundColor = "#FEE2E2"
+redBackgroundColor = "#FFFBF4"
 redTextColor = "#991B1B"
-grayColor = "#475569"
-grayBackgroundColor = "#F1F5F9"
-grayTextColor = "#475569"
+grayColor = "#5A544C"
+grayBackgroundColor = "#E8E1D4"
+grayTextColor = "#5A544C"
 
 [theme.sidebar]
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F1F5F9"
-borderColor = "#E2E8F0"
-textColor = "#0F172A"
+backgroundColor = "#FFFBF4"
+secondaryBackgroundColor = "#E8E1D4"
+borderColor = "#D4CBBA"
+textColor = "#1A1612"
 showWidgetBorder = true
 
-# IBM Plex, self-hosted from ./static/fonts (latin subset, Google Fonts build).
-# Sans is a variable file covering 100-700; Mono ships one file per weight.
+# IBM Plex, self-hosted from ./static/fonts (latin subset, Google Fonts
+# static faces). Sans ships 400/500/600 as discrete files, same as Mono.
+# The previous Sans file was the variable latin cut registered as
+# weight = "100 700"; headings request 600, so real 500/600 files are
+# required. Do not faux-bold.
 [[theme.fontFaces]]
 family = "IBM Plex Sans"
 url = "app/static/fonts/IBMPlexSans-latin-400.woff2"
-weight = "100 700"
+weight = "400"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "IBM Plex Sans"
+url = "app/static/fonts/IBMPlexSans-latin-500.woff2"
+weight = "500"
+style = "normal"
+
+[[theme.fontFaces]]
+family = "IBM Plex Sans"
+url = "app/static/fonts/IBMPlexSans-latin-600.woff2"
+weight = "600"
 style = "normal"
 
 [[theme.fontFaces]]
