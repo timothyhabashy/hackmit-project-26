@@ -1,0 +1,16 @@
+{
+  "policy_id": "northstar-usd-v1",
+  "company_id": "NORTHSTAR",
+  "allowed_cash_account_id": "CASH-US-01",
+  "currency": "USD",
+  "supported_channels": [
+    "WIRE",
+    "ACH"
+  ],
+  "allow_receiving_wire_fee": true,
+  "max_receiving_wire_fee_cents": 5000,
+  "max_bundle_invoices": 3,
+  "allow_partial_settlement": false,
+  "allow_writeoff": false,
+  "require_remittance": true
+}

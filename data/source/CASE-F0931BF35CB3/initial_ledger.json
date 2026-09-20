@@ -1,0 +1,16 @@
+{
+  "applications": [
+    {
+      "application_id": "APP-336892977C5E",
+      "payment_id": "PAY-4409E608BACD",
+      "allocations": [
+        {
+          "invoice_id": "INV-530101B69203",
+          "cash_cents": 97000,
+          "fee_cents": 0
+        }
+      ],
+      "seeded": true
+    }
+  ]
+}

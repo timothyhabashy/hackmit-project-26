@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-741B07C76BA9,BTX-DDD22501D589,CASH-US-01,2026-03-20,USD,276500,WIRE,Harbor Treasury,BR-D0228C8B126E

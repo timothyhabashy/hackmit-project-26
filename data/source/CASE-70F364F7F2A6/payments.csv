@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-6F42C3BB628C,BTX-6D2DD21959A1,CASH-US-01,2026-01-20,USD,45000,ACH,Harbor Treasury,BR-2571672EC7B7

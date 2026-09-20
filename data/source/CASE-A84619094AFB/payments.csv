@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-C89BBC14978E,BTX-68034202AC78,CASH-US-01,2026-01-20,USD,74235,WIRE,HBR Settlement Desk,BR-BAC2A9AC9F26

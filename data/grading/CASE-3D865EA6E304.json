@@ -1,0 +1,16 @@
+{
+  "case_id": "CASE-3D865EA6E304",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-9ED501812964": 280000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "REFERENCE_MISMATCH",
+    "MISSING_FEE_NOTICE"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

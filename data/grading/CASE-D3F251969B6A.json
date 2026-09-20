@@ -1,0 +1,25 @@
+{
+  "case_id": "CASE-D3F251969B6A",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-E7751ECC12EC",
+      "cash_cents": 65000,
+      "fee_cents": 0
+    },
+    {
+      "invoice_id": "INV-2D1532B35458",
+      "cash_cents": 35000,
+      "fee_cents": 0
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-E7751ECC12EC": 0,
+    "INV-2D1532B35458": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

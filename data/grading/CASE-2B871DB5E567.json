@@ -1,0 +1,31 @@
+{
+  "case_id": "CASE-2B871DB5E567",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-82C31C339A97",
+      "cash_cents": 8700,
+      "fee_cents": 0
+    },
+    {
+      "invoice_id": "INV-0DB8CA6700BC",
+      "cash_cents": 1300,
+      "fee_cents": 0
+    },
+    {
+      "invoice_id": "INV-7756E12FC6A6",
+      "cash_cents": 22000,
+      "fee_cents": 0
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-82C31C339A97": 0,
+    "INV-0DB8CA6700BC": 0,
+    "INV-7756E12FC6A6": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

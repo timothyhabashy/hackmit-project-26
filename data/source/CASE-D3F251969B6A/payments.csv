@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-D97ECA44A2C0,BTX-23663CAC651A,CASH-US-01,2026-01-20,USD,100000,ACH,Harbor Treasury,BR-1732CBBEDAA8

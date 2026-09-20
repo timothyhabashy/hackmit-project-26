@@ -1,0 +1,16 @@
+{
+  "case_id": "CASE-F28F079AE942",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-5006621ED2DE": 50000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "UNSUPPORTED_OVERPAYMENT",
+    "AMOUNT_MISMATCH"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

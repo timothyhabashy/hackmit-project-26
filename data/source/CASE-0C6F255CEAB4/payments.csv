@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-656DC8C83DAA,BTX-91EDD1A7F290,CASH-US-01,2026-03-20,USD,145000,ACH,Harbor Treasury,BR-197FB251D2C8

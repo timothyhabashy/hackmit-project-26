@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-93731CC1D177",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-1C4678893232",
+      "cash_cents": 595000,
+      "fee_cents": 5000
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-1C4678893232": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

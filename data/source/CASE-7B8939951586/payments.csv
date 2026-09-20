@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-FA2A57D41E63,BTX-E67FBF48A9E4,CASH-US-01,2026-02-20,USD,78000,WIRE,Harbor Treasury,BR-139F1196A7A2

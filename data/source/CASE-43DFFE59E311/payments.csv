@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-391D7D3F47FD,BTX-534F94EE82C3,CASH-US-01,2026-03-20,USD,37337,ACH,Harbor Treasury,BR-52B357CF6EB5

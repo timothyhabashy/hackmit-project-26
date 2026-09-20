@@ -1,0 +1,17 @@
+{
+  "case_id": "CASE-70F364F7F2A6",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-8D9CA0E98322": 45000,
+    "INV-1AA157F0F675": 45000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "AMBIGUOUS_MATCH",
+    "MISSING_REMITTANCE"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

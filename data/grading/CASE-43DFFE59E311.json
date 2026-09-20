@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-43DFFE59E311",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-1653C3800BD3",
+      "cash_cents": 37337,
+      "fee_cents": 0
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-1653C3800BD3": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

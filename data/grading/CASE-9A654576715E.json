@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-9A654576715E",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-18CA6E676479",
+      "cash_cents": 238000,
+      "fee_cents": 2000
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-18CA6E676479": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

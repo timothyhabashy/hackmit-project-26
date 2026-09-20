@@ -1,0 +1,15 @@
+{
+  "case_id": "CASE-63529421F3DD",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-B677004540FE": 0
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [
+    "PAYMENT_ALREADY_APPLIED"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

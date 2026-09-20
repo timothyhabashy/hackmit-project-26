@@ -1,0 +1,15 @@
+{
+  "case_id": "CASE-D19F18830478",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-52BE9C0A9941": 1000000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "OPEN_DISPUTE"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

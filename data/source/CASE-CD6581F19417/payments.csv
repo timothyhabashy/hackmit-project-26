@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-665E5A5D3D1B,BTX-911B6ACE8F73,CASH-US-01,2026-03-20,USD,100100,ACH,Harbor Treasury,BR-9FB46CFE0B11

@@ -1,0 +1,27 @@
+{
+  "case_id": "CASE-1B003942CE4D",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-B9732A1DECDA",
+      "cash_cents": 218000,
+      "fee_cents": 2000
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-B9732A1DECDA": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [
+    {
+      "template_key": "wire_fee_lookup_v1",
+      "customer_id": "CUST-HARBOR",
+      "bank_account_id": "CASH-US-01",
+      "currency": "USD",
+      "channel": "WIRE"
+    }
+  ],
+  "must_preserve_other_records": true
+}

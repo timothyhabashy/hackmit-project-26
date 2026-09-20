@@ -1,0 +1,3 @@
+invoice_id,customer_id,currency,issued_date,due_date,original_cents,opening_outstanding_cents,status
+INV-B9732A1DECDA,CUST-CEDAR,USD,2026-02-06,2026-02-24,220000,220000,OPEN
+INV-A965140D90F5,CUST-HARBOR,USD,2026-02-06,2026-02-24,48537,48537,OPEN

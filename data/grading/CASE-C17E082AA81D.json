@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-C17E082AA81D",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-1C554B13ACBA",
+      "cash_cents": 97999,
+      "fee_cents": 1
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-1C554B13ACBA": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

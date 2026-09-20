@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-FAF90BF09A3C,BTX-588D3B8F1FEA,CASH-US-01,2026-03-20,USD,88400,WIRE,Harbor Treasury,BR-E5E0A67C052C

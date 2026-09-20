@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-FBFF3FCA5D9D",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-143AABF1A29D",
+      "cash_cents": 399100,
+      "fee_cents": 900
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-143AABF1A29D": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

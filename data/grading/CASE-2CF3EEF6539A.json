@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-2CF3EEF6539A",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-7D65F3A0732E",
+      "cash_cents": 182000,
+      "fee_cents": 2000
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-7D65F3A0732E": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-1CFA9FEE848F",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-1042",
+      "cash_cents": 996500,
+      "fee_cents": 3500
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-1042": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

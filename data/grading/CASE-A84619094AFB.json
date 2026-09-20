@@ -1,0 +1,19 @@
+{
+  "case_id": "CASE-A84619094AFB",
+  "expected_outcome": "RESOLVED",
+  "expected_allocations": [
+    {
+      "invoice_id": "INV-BD11A796AD54",
+      "cash_cents": 74235,
+      "fee_cents": 0
+    }
+  ],
+  "expected_ending_balances": {
+    "INV-BD11A796AD54": 0
+  },
+  "expected_new_application_count": 1,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

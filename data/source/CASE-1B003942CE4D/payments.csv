@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-C026A7F29432,BTX-4448535D18CA,CASH-US-01,2026-02-20,USD,218000,WIRE,Cedar Design AP,BR-E3D35A220BFA

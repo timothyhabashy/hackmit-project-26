@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-877D88D817A6,BTX-9EEB638D1837,CASH-US-01,2026-01-20,USD,120000,ACH,Harbor Treasury,BR-967ADF01EC26

@@ -1,0 +1,15 @@
+{
+  "case_id": "CASE-EA4FEC4D04BE",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-BEF280040A11": 80000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "MISSING_FEE_NOTICE"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

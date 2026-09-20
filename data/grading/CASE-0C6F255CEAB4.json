@@ -1,0 +1,16 @@
+{
+  "case_id": "CASE-0C6F255CEAB4",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-EE7DAFA4C0E1": 145000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "CURRENCY_MISMATCH",
+    "UNSUPPORTED_CURRENCY"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

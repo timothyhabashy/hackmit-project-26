@@ -1,0 +1,15 @@
+{
+  "case_id": "CASE-F0931BF35CB3",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-530101B69203": 0
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": true,
+  "allowed_review_codes": [
+    "PAYMENT_ALREADY_APPLIED"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

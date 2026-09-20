@@ -1,0 +1,15 @@
+{
+  "case_id": "CASE-84F1300FE6B4",
+  "expected_outcome": "REVIEW",
+  "expected_allocations": [],
+  "expected_ending_balances": {
+    "INV-A6E37EFFAE11": 160000
+  },
+  "expected_new_application_count": 0,
+  "expected_payment_applied": false,
+  "allowed_review_codes": [
+    "OPEN_DISPUTE"
+  ],
+  "forbidden_precedent_scopes": [],
+  "must_preserve_other_records": true
+}

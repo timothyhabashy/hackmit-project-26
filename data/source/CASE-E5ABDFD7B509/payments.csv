@@ -1,0 +1,2 @@
+payment_id,bank_transaction_id,bank_account_id,posted_date,currency,amount_cents,channel,payer_text,bank_reference
+PAY-C42E12D3BFEE,BTX-D3566A7FF1A1,CASH-US-01,2026-03-20,USD,38100,ACH,Harbor Treasury,BR-5CF42F95DCE8

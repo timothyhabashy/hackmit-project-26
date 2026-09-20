@@ -1,0 +1,557 @@
+{
+  "seed": 42,
+  "policy_id": "northstar-usd-v1",
+  "fixtures_hash": "54a27241c64a57f0a37699fe68de828d4faf7b23009f3248fe437cf74615245a",
+  "cases": [
+    {
+      "authoring_id": "T01",
+      "split": "teaching",
+      "case_id": "CASE-45E5749872CE",
+      "payment_id": "PAY-877D88D817A6",
+      "invoice_ids": [
+        "INV-0D33AFCB4671"
+      ],
+      "document_ids": [
+        "DOC-0E200B074921",
+        "DOC-2E6452AE0FC4"
+      ],
+      "package_relpath": "source/CASE-45E5749872CE",
+      "source_hash": "f55d4317bdc3741a0a533cf33a7feb84664cd2d68a222ca3081729a6a00b1b22"
+    },
+    {
+      "authoring_id": "T02",
+      "split": "teaching",
+      "case_id": "CASE-D3F251969B6A",
+      "payment_id": "PAY-D97ECA44A2C0",
+      "invoice_ids": [
+        "INV-E7751ECC12EC",
+        "INV-2D1532B35458"
+      ],
+      "document_ids": [
+        "DOC-DCE917A452C8",
+        "DOC-FC48979A8BD1"
+      ],
+      "package_relpath": "source/CASE-D3F251969B6A",
+      "source_hash": "0833918f5eb20fcdfdf1d4f3e7089e4777e01dbd6f28a3e0e56390989f84cbea"
+    },
+    {
+      "authoring_id": "T03",
+      "split": "teaching",
+      "case_id": "CASE-1CFA9FEE848F",
+      "payment_id": "PAY-201",
+      "invoice_ids": [
+        "INV-1042"
+      ],
+      "document_ids": [
+        "DOC-R201",
+        "DOC-F201",
+        "DOC-6A4BB498FFB5"
+      ],
+      "package_relpath": "source/CASE-1CFA9FEE848F",
+      "source_hash": "a3be08d5238599072bc945cb673f0b14d56be0c1297f0285997c68e2ad937171"
+    },
+    {
+      "authoring_id": "T04",
+      "split": "teaching",
+      "case_id": "CASE-A84619094AFB",
+      "payment_id": "PAY-C89BBC14978E",
+      "invoice_ids": [
+        "INV-BD11A796AD54"
+      ],
+      "document_ids": [
+        "DOC-160637B611EE",
+        "DOC-5972AEB783AF"
+      ],
+      "package_relpath": "source/CASE-A84619094AFB",
+      "source_hash": "beaaa666b12397695c06553fb590b45ede8892633ab9f1fd96776cf026ab6bf3"
+    },
+    {
+      "authoring_id": "T05",
+      "split": "teaching",
+      "case_id": "CASE-FCD5F8079F33",
+      "payment_id": "PAY-C23953E3A1C8",
+      "invoice_ids": [
+        "INV-843E93482C72",
+        "INV-7C44D6FCEA14",
+        "INV-015C75376356"
+      ],
+      "document_ids": [
+        "DOC-9185D9D22CC6",
+        "DOC-A3059C599779"
+      ],
+      "package_relpath": "source/CASE-FCD5F8079F33",
+      "source_hash": "18f5001b94572a83bc84531772f4f50440bcd2470d450404ba2d82299b473a67"
+    },
+    {
+      "authoring_id": "T06",
+      "split": "teaching",
+      "case_id": "CASE-D19F18830478",
+      "payment_id": "PAY-7B8F50C8D785",
+      "invoice_ids": [
+        "INV-52BE9C0A9941"
+      ],
+      "document_ids": [
+        "DOC-7C3F261406F8",
+        "DOC-E45DEF2BEC49",
+        "DOC-EE0333C05550",
+        "DOC-A01BDA8038A8"
+      ],
+      "package_relpath": "source/CASE-D19F18830478",
+      "source_hash": "a6d0d1033019427d493d0030797e1c9f84bbd0f20eec2b831b30e5550ad1f37c"
+    },
+    {
+      "authoring_id": "T07",
+      "split": "teaching",
+      "case_id": "CASE-EA4FEC4D04BE",
+      "payment_id": "PAY-8C2007F1AFA7",
+      "invoice_ids": [
+        "INV-BEF280040A11"
+      ],
+      "document_ids": [
+        "DOC-C07EEB300EC5",
+        "DOC-2FB9081491AC"
+      ],
+      "package_relpath": "source/CASE-EA4FEC4D04BE",
+      "source_hash": "32887d14f16ae95df51633f1d796512ce4f64552373c849203127f1f327b3d1b"
+    },
+    {
+      "authoring_id": "T08",
+      "split": "teaching",
+      "case_id": "CASE-70F364F7F2A6",
+      "payment_id": "PAY-6F42C3BB628C",
+      "invoice_ids": [
+        "INV-8D9CA0E98322",
+        "INV-1AA157F0F675"
+      ],
+      "document_ids": [
+        "DOC-CC3112316DDC"
+      ],
+      "package_relpath": "source/CASE-70F364F7F2A6",
+      "source_hash": "c8959e56ad598e64e1215cb02700f311f0fb13d93aa9bfe2e6f585381dde638c"
+    },
+    {
+      "authoring_id": "T09",
+      "split": "teaching",
+      "case_id": "CASE-C9C706DCE2DC",
+      "payment_id": "PAY-00A8C1A4E977",
+      "invoice_ids": [
+        "INV-D1C7198DCFD2"
+      ],
+      "document_ids": [
+        "DOC-14009D5F50E8",
+        "DOC-AD8C083703B5"
+      ],
+      "package_relpath": "source/CASE-C9C706DCE2DC",
+      "source_hash": "3d2ca28e5b0cce0218aa41de4cd5190b7ddb0dcc830f0368a1cbbddb2a9c03ba"
+    },
+    {
+      "authoring_id": "T10",
+      "split": "teaching",
+      "case_id": "CASE-77B15B1E6163",
+      "payment_id": "PAY-756919601CAF",
+      "invoice_ids": [
+        "INV-A58BAD7F5393"
+      ],
+      "document_ids": [
+        "DOC-1CE06DAB434E",
+        "DOC-5480CECB1E13"
+      ],
+      "package_relpath": "source/CASE-77B15B1E6163",
+      "source_hash": "b144eed14953ccf643145a81d90b3e79b8c4e35380a604586b982cc18cce71ae"
+    },
+    {
+      "authoring_id": "V01",
+      "split": "candidate",
+      "case_id": "CASE-9A654576715E",
+      "payment_id": "PAY-1A0A7CFEC31C",
+      "invoice_ids": [
+        "INV-18CA6E676479"
+      ],
+      "document_ids": [
+        "DOC-E50FE75CB351",
+        "DOC-A24E37021DF9",
+        "DOC-20B3E6DCFA37"
+      ],
+      "package_relpath": "source/CASE-9A654576715E",
+      "source_hash": "f6d0b4d7d8e588c148ee66ff1c73637bdf969ec822f948487a38448ac3c5f3ff"
+    },
+    {
+      "authoring_id": "V02",
+      "split": "candidate",
+      "case_id": "CASE-84F1300FE6B4",
+      "payment_id": "PAY-9E7573431B8D",
+      "invoice_ids": [
+        "INV-A6E37EFFAE11"
+      ],
+      "document_ids": [
+        "DOC-1F0042E642E5",
+        "DOC-18991B17C9B2",
+        "DOC-D316AE75A80C"
+      ],
+      "package_relpath": "source/CASE-84F1300FE6B4",
+      "source_hash": "93d1281963d9943e03ef29dae6f34490a471959b3f53318b217d74f74488f8d9"
+    },
+    {
+      "authoring_id": "V03",
+      "split": "candidate",
+      "case_id": "CASE-1B003942CE4D",
+      "payment_id": "PAY-C026A7F29432",
+      "invoice_ids": [
+        "INV-B9732A1DECDA"
+      ],
+      "document_ids": [
+        "DOC-80964E8387C7",
+        "DOC-AC1B359CF2F5",
+        "DOC-F25960C710D8"
+      ],
+      "package_relpath": "source/CASE-1B003942CE4D",
+      "source_hash": "cfc5e8e17592978f552253a75db1767d5ef44cc2b2fcd933e93e66a806377286"
+    },
+    {
+      "authoring_id": "V04",
+      "split": "candidate",
+      "case_id": "CASE-7B8939951586",
+      "payment_id": "PAY-FA2A57D41E63",
+      "invoice_ids": [
+        "INV-1E8C3F61DC0D"
+      ],
+      "document_ids": [
+        "DOC-8CAB51EC8AFC",
+        "DOC-45433E89717E"
+      ],
+      "package_relpath": "source/CASE-7B8939951586",
+      "source_hash": "554861278a7ed9754c125a1c2ecfb2da7243ae9028be208a38adc55f2f983d8d"
+    },
+    {
+      "authoring_id": "V05",
+      "split": "candidate",
+      "case_id": "CASE-F0931BF35CB3",
+      "payment_id": "PAY-4409E608BACD",
+      "invoice_ids": [
+        "INV-530101B69203"
+      ],
+      "document_ids": [
+        "DOC-190D63FF62F2",
+        "DOC-5225882309C3"
+      ],
+      "package_relpath": "source/CASE-F0931BF35CB3",
+      "source_hash": "34f2ac662cb26b05965058042e375eb57ef14414450a235603809e6bc660c28b"
+    },
+    {
+      "authoring_id": "H01",
+      "split": "heldout",
+      "case_id": "CASE-43DFFE59E311",
+      "payment_id": "PAY-391D7D3F47FD",
+      "invoice_ids": [
+        "INV-1653C3800BD3"
+      ],
+      "document_ids": [
+        "DOC-0E59689FC2D4",
+        "DOC-76FC0C59276A"
+      ],
+      "package_relpath": "source/CASE-43DFFE59E311",
+      "source_hash": "c3a75835c263b78176d4417613750e6f6957457233323218ae711b21c53f3c56"
+    },
+    {
+      "authoring_id": "H02",
+      "split": "heldout",
+      "case_id": "CASE-E5ABDFD7B509",
+      "payment_id": "PAY-C42E12D3BFEE",
+      "invoice_ids": [
+        "INV-326608B39C1E",
+        "INV-56B4077E441E"
+      ],
+      "document_ids": [
+        "DOC-6FA8C61B459D",
+        "DOC-1E774C4D4893"
+      ],
+      "package_relpath": "source/CASE-E5ABDFD7B509",
+      "source_hash": "aa6f3c6e25c396e630c03efa7eba0c7145a57f61f2c77bcd1013f75b360c2229"
+    },
+    {
+      "authoring_id": "H03",
+      "split": "heldout",
+      "case_id": "CASE-2B871DB5E567",
+      "payment_id": "PAY-0CB3BF783E47",
+      "invoice_ids": [
+        "INV-82C31C339A97",
+        "INV-0DB8CA6700BC",
+        "INV-7756E12FC6A6"
+      ],
+      "document_ids": [
+        "DOC-65C426A19C89",
+        "DOC-FBAFBC27A82C"
+      ],
+      "package_relpath": "source/CASE-2B871DB5E567",
+      "source_hash": "310a64d1c7a263ca8d349ef7fbfdf60ae3392e2d01fa78d8b28ab48165a30883"
+    },
+    {
+      "authoring_id": "H04",
+      "split": "heldout",
+      "case_id": "CASE-2CF3EEF6539A",
+      "payment_id": "PAY-D9F8A80CF022",
+      "invoice_ids": [
+        "INV-7D65F3A0732E"
+      ],
+      "document_ids": [
+        "DOC-276D9861B7BD",
+        "DOC-60FC4715210D",
+        "DOC-27FB60E24A67"
+      ],
+      "package_relpath": "source/CASE-2CF3EEF6539A",
+      "source_hash": "c94e5e78b8523ae5fdaa5506ee23d96fdf4d355894b8a63adf1b611957c296c6"
+    },
+    {
+      "authoring_id": "H05",
+      "split": "heldout",
+      "case_id": "CASE-3EA3389956FF",
+      "payment_id": "PAY-4B7B76ED7C9B",
+      "invoice_ids": [
+        "INV-6E0DD7248CF5"
+      ],
+      "document_ids": [
+        "DOC-6D768B5A2856",
+        "DOC-23FA19865F87",
+        "DOC-65A41B32C4ED"
+      ],
+      "package_relpath": "source/CASE-3EA3389956FF",
+      "source_hash": "61979df7fbb1a547dac67a36f6c35f3c16ac65ff25b22146983c31207c92ee8c"
+    },
+    {
+      "authoring_id": "H06",
+      "split": "heldout",
+      "case_id": "CASE-C17E082AA81D",
+      "payment_id": "PAY-813C9B359EF6",
+      "invoice_ids": [
+        "INV-1C554B13ACBA"
+      ],
+      "document_ids": [
+        "DOC-9D14452308C6",
+        "DOC-F601C261B37C",
+        "DOC-755B1F8504C7"
+      ],
+      "package_relpath": "source/CASE-C17E082AA81D",
+      "source_hash": "89a9bd3b969aa008f639bc1dab3c1f0a5d67f49e693418c5e5dac4354e35f725"
+    },
+    {
+      "authoring_id": "H07",
+      "split": "heldout",
+      "case_id": "CASE-93731CC1D177",
+      "payment_id": "PAY-27957EDA39BE",
+      "invoice_ids": [
+        "INV-1C4678893232"
+      ],
+      "document_ids": [
+        "DOC-562D6955AD08",
+        "DOC-113C66076C43",
+        "DOC-3358ED856C82"
+      ],
+      "package_relpath": "source/CASE-93731CC1D177",
+      "source_hash": "d7ea3de507f5d742552abc657a20ad258810c4bc5d11c76b689215bac1d880f2"
+    },
+    {
+      "authoring_id": "H08",
+      "split": "heldout",
+      "case_id": "CASE-FBFF3FCA5D9D",
+      "payment_id": "PAY-300863BCC88E",
+      "invoice_ids": [
+        "INV-143AABF1A29D"
+      ],
+      "document_ids": [
+        "DOC-08675D16ECCA",
+        "DOC-4010750E210C",
+        "DOC-9BEE4C0C0A3B"
+      ],
+      "package_relpath": "source/CASE-FBFF3FCA5D9D",
+      "source_hash": "812a8cf2938d7951e1fee5059c844a86add1fdb1441c68d8077b4bb6f101e35f"
+    },
+    {
+      "authoring_id": "H09",
+      "split": "heldout",
+      "case_id": "CASE-D52823603CFC",
+      "payment_id": "PAY-D1FD4AB0DA2A",
+      "invoice_ids": [
+        "INV-78B1F71EA217"
+      ],
+      "document_ids": [
+        "DOC-93793B221832",
+        "DOC-A81F7ED4428B",
+        "DOC-04BB09030274"
+      ],
+      "package_relpath": "source/CASE-D52823603CFC",
+      "source_hash": "0bf4dfbd5ec2358243dacc28f088a4eff8bfe33ddc97396dfaa5ae76e5671ad4"
+    },
+    {
+      "authoring_id": "H10",
+      "split": "heldout",
+      "case_id": "CASE-32C378855915",
+      "payment_id": "PAY-835F2337147B",
+      "invoice_ids": [
+        "INV-74B547F03605"
+      ],
+      "document_ids": [
+        "DOC-BD64FE5D892B",
+        "DOC-410FD3992A1B",
+        "DOC-38D3C2C78F92",
+        "DOC-2A6A3C5A240F"
+      ],
+      "package_relpath": "source/CASE-32C378855915",
+      "source_hash": "1bc068e0dead88255938efe818c2ccc23dffd02922fc19536771f995b59dd24e"
+    },
+    {
+      "authoring_id": "H11",
+      "split": "heldout",
+      "case_id": "CASE-DAE2517A4A69",
+      "payment_id": "PAY-D8D29FCE7B63",
+      "invoice_ids": [
+        "INV-3A4E08C32BBA"
+      ],
+      "document_ids": [
+        "DOC-A37E7D14316B",
+        "DOC-070B23011160"
+      ],
+      "package_relpath": "source/CASE-DAE2517A4A69",
+      "source_hash": "7037df1963ced12d3e0187836d84b4c312b32dad925cedefd4bdce82e000f845"
+    },
+    {
+      "authoring_id": "H12",
+      "split": "heldout",
+      "case_id": "CASE-3D865EA6E304",
+      "payment_id": "PAY-741B07C76BA9",
+      "invoice_ids": [
+        "INV-9ED501812964"
+      ],
+      "document_ids": [
+        "DOC-33B439ED37E4",
+        "DOC-A7FEB8273AE4",
+        "DOC-0E79FB5967C6"
+      ],
+      "package_relpath": "source/CASE-3D865EA6E304",
+      "source_hash": "74adc4bb09f2fdb659b9debc977786ba8eed6cc471d7320cacd8e50735ed1e23"
+    },
+    {
+      "authoring_id": "H13",
+      "split": "heldout",
+      "case_id": "CASE-D6D53CD15245",
+      "payment_id": "PAY-B2A46D5767BF",
+      "invoice_ids": [
+        "INV-F1DAE2DF9EAC"
+      ],
+      "document_ids": [
+        "DOC-2BA40701C7CF",
+        "DOC-01A57C6789C0"
+      ],
+      "package_relpath": "source/CASE-D6D53CD15245",
+      "source_hash": "2c7d9a6b9adbf48bfb0069004a0a2567d4582a70eb3a077e536809f568dc6feb"
+    },
+    {
+      "authoring_id": "H14",
+      "split": "heldout",
+      "case_id": "CASE-0C6F255CEAB4",
+      "payment_id": "PAY-656DC8C83DAA",
+      "invoice_ids": [
+        "INV-EE7DAFA4C0E1"
+      ],
+      "document_ids": [
+        "DOC-6152231A193E",
+        "DOC-180C053F94F2"
+      ],
+      "package_relpath": "source/CASE-0C6F255CEAB4",
+      "source_hash": "ce9f6b68f7c7eab8c7f86d8ab3b49f2dbc8805ca651604e251828eac4e9b4912"
+    },
+    {
+      "authoring_id": "H15",
+      "split": "heldout",
+      "case_id": "CASE-45A07943AC8F",
+      "payment_id": "PAY-A20B116F6B64",
+      "invoice_ids": [
+        "INV-E27CF4462B31"
+      ],
+      "document_ids": [
+        "DOC-6B70D76A8295",
+        "DOC-7BB55D5E8508",
+        "DOC-CB4BB9B42DA0"
+      ],
+      "package_relpath": "source/CASE-45A07943AC8F",
+      "source_hash": "88e9fd1be9cc9050dd48452312971dc0f7f731d8c225346e8484f040e6628299"
+    },
+    {
+      "authoring_id": "H16",
+      "split": "heldout",
+      "case_id": "CASE-4E54928A3D5D",
+      "payment_id": "PAY-B09F3E88DF75",
+      "invoice_ids": [
+        "INV-04DCB2F8E210"
+      ],
+      "document_ids": [
+        "DOC-0946F4CBB1A7",
+        "DOC-8BBDEA8AA934",
+        "DOC-5A2B1561FFA6"
+      ],
+      "package_relpath": "source/CASE-4E54928A3D5D",
+      "source_hash": "e96cea342d2bca3ee0623dfb514b40018f8366858106c9c7accfa89a2e73abdb"
+    },
+    {
+      "authoring_id": "H17",
+      "split": "heldout",
+      "case_id": "CASE-CD6581F19417",
+      "payment_id": "PAY-665E5A5D3D1B",
+      "invoice_ids": [
+        "INV-31D844644836"
+      ],
+      "document_ids": [
+        "DOC-863DEF1B1FAA",
+        "DOC-BF3950B561DC"
+      ],
+      "package_relpath": "source/CASE-CD6581F19417",
+      "source_hash": "8e344e3976c1ad09d3bfeb4bf1d5fbd8414857ee07957c9bc8f1f68f34a0cff2"
+    },
+    {
+      "authoring_id": "H18",
+      "split": "heldout",
+      "case_id": "CASE-D7FFF5702C5D",
+      "payment_id": "PAY-BA21856655AA",
+      "invoice_ids": [
+        "INV-F60AD8476857",
+        "INV-D6BCA7EA1938"
+      ],
+      "document_ids": [
+        "DOC-1E8F45A87227",
+        "DOC-2B90ACD9A90A",
+        "DOC-3DE9A3B048BF"
+      ],
+      "package_relpath": "source/CASE-D7FFF5702C5D",
+      "source_hash": "f85638c82dd9bbe2c6b1cd207b5cb4b5dfd96a324acb2dde469de6bb809125c3"
+    },
+    {
+      "authoring_id": "H19",
+      "split": "heldout",
+      "case_id": "CASE-63529421F3DD",
+      "payment_id": "PAY-FAF90BF09A3C",
+      "invoice_ids": [
+        "INV-B677004540FE"
+      ],
+      "document_ids": [
+        "DOC-C53B548B0439",
+        "DOC-BE2124961CB6"
+      ],
+      "package_relpath": "source/CASE-63529421F3DD",
+      "source_hash": "c9cfa71f5322b998823e9399d2b2fb83d2c2de58cb786f7405717577abb2bfed"
+    },
+    {
+      "authoring_id": "H20",
+      "split": "heldout",
+      "case_id": "CASE-F28F079AE942",
+      "payment_id": "PAY-4077C8B11680",
+      "invoice_ids": [
+        "INV-5006621ED2DE"
+      ],
+      "document_ids": [
+        "DOC-F610028F7B32",
+        "DOC-46CE02AC8406"
+      ],
+      "package_relpath": "source/CASE-F28F079AE942",
+      "source_hash": "5e5e921213781e263710a4a196fa332d7fc3f854c251b266460bac7af96dffc9"
+    }
+  ]
+}
